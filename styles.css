@@ -103,17 +103,21 @@ button:disabled {
 }
 
 .log--player {
+  font-weight: bold;
   color: #7700ff;
 }
 
 .log--monster {
+  font-weight: bold;
   color: #da8d00;
 }
 
 .log--damage {
+  font-weight: bold;
   color: red;
 }
 
 .log--heal {
+  font-weight: bold;
   color: green;
 }

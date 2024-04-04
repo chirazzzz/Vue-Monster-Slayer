@@ -64,19 +64,22 @@ const app = Vue.createApp({
       this.currentRound++;
       const attackValue = getRandomValue(5, 12);
       this.monsterHealth -= attackValue;
-      this.gameActions.push(`Player attacked Monster for ${attackValue} damage`)
+      // this.gameActions.push(`Player attacked Monster for ${attackValue} damage`)
+      this.addGameAction('player', 'attack', attackValue)
       this.attackPlayer();
     },
     attackPlayer() {
       const attackValue = getRandomValue(8, 15);
       this.playerHealth -= attackValue;
-      this.gameActions.push(`Monster attacked Player for ${attackValue} damage`)
+      // this.gameActions.push(`Monster attacked Player for ${attackValue} damage`)
+      this.addGameAction('monster', 'attack', attackValue)
     },
     specialAttackMonster() {
       this.currentRound++;
       const attackValue = getRandomValue(12, 25);
       this.monsterHealth -= attackValue;
-      this.gameActions.push(`Player special attacked Monster for ${attackValue} damage`)
+      // this.gameActions.push(`Player special attacked Monster for ${attackValue} damage`)
+      this.addGameAction('player', 'special attack', attackValue)
       this.attackPlayer();
     },
     healPlayer() {
@@ -87,12 +90,20 @@ const app = Vue.createApp({
       } else {
         this.playerHealth += healValue;
       }
-      this.gameActions.push(`Player healed for ${healValue} health`)
+      // this.gameActions.push(`Player healed for ${healValue} health`)
+      this.addGameAction('player', 'heal', healValue)
       this.attackPlayer();
     },
     surrender() {
       this.winner = "playerLost"
-      this.gameActions.push(`Player surrendered!`)
+      this.gameActions.unshift(`Player surrendered!`)
+    },
+    addGameAction(who, what, value) {
+      this.gameActions.unshift({
+        actionBy: who,
+        actionType: what,
+        actionValue: value,
+      })
     }
   },
 });
