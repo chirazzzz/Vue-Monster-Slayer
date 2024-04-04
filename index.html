@@ -50,7 +50,7 @@
       <section id="log" class="container">
         <h2>Battle Log</h2>
         <ul>
-          <li v-for="action in gameActions">
+          <li v-for="action in gameActions" :key="action">
             <span
               :class="{'log--player': action.actionBy === 'player', 'log--monster': action.actionBy === 'monster'}"
               >{{ action.actionBy === 'player' ? 'Player' : 'Monster'
